@@ -1,9 +1,9 @@
 <?php
 
-require "autoload.php";
+require "framework/core/Framework.class.php";
 
-Loader::autoload();
+Framework::init();
 
 
-$my_controller = new MyController();
-echo $my_controller->run();
+$myObject = new MyController();
+$myObject->run();
