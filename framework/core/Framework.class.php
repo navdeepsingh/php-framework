@@ -47,7 +47,7 @@ class Framework
 
     $controller_name = CONTROLLER . "Controller";
 
-    $action_name = ACTION . "Action";
+    $action_name = ACTION;
 
     $controller = new $controller_name;
 
