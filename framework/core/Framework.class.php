@@ -5,10 +5,11 @@
  */
 class Framework
 {
-  public static function init()
+  public function __construct()
   {
-    self::boostrap();
-    self::autoload();
+    $this->boostrap();
+    $this->autoload();
+    $this->dispatch();
   }
 
   private static function boostrap()
@@ -23,6 +24,9 @@ class Framework
     define('CONTROLLER_PATH', ROOT . 'controllers' . DS);
     define('MODEL_PATH', ROOT . 'models' . DS);
     define('VIEW_PATH', ROOT . 'views' . DS);
+
+    define('CONTROLLER', $_REQUEST['c'] ?? 'Index');
+    define('ACTION', $_REQUEST['a'] ?? 'index');
   }
 
   public static function autoload()
@@ -35,5 +39,18 @@ class Framework
     if (substr($classname, -10) == 'Controller') {
       require_once  "controllers/$classname.class.php";
     }
+  }
+
+  private static function dispatch()
+  {
+    // Instantiate the controller class and call its action method
+
+    $controller_name = CONTROLLER . "Controller";
+
+    $action_name = ACTION . "Action";
+
+    $controller = new $controller_name;
+
+    $controller->$action_name();
   }
 }
