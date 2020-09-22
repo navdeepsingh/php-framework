@@ -39,6 +39,11 @@ class Framework
     if (substr($classname, -10) == 'Controller') {
       require_once  "controllers/$classname.class.php";
     }
+    if (substr($classname, -5) == 'Model') {
+      require_once  "models/$classname.class.php";
+    }
+    // Load Database Class
+    require_once FRAMEWORK_PATH."core".DS."Model.class.php";    
   }
 
   private static function dispatch()
